@@ -1,0 +1,49 @@
+Diary Entry Week 1. 26th - 3rd March
+
+1. I have prepared my dataset that will used for my neural network. 
+2. To do this I have created 6 playlists of 6 individual songs from different genres.
+3.I have listened to these and created a binary list of the drum patterns in each song from every playlist.
+4. Downloaded and external driver that allows me to route audio from spotify to max.
+5. With the help of the max MSP external object op.beatitude~, I managed to get the bpm for each of these tracks.
+6. Created a questionaire that 6 participants have answered.
+
+
+Next week I will calculate the mean values for each of genre. These values will eventually be used to change aspects of the neural net
+
+7.With the help of this tutorial: https://www.youtube.com/watch?v=h-xIuHyhQGE&t=7784s. And this website https://iquilezles.org/articles/. 
+I have researched into raymarching and shaders and have created a rough patch that may be incoporated into the final patch.
+
+At this point, I like the idea of using shaders for geometery. I want the final patch to have a 3d shape to be the "protagnist" of the patch.
+
+Here are links to the playlists:
+Techno - https://open.spotify.com/playlist/3u3nbD8uD7372lIDD5mfEH?si=9fe40c573e6d4550
+Trance - https://open.spotify.com/playlist/2IJhRmVVUv2cnP4wIVmZjM?si=7bdec2debc4a42f7
+Liquid Dnb - https://open.spotify.com/playlist/1Ox8hgG3HCAD8bNRU04bhJ?si=ca48b5f7247c4b58
+Alternative Electronic  https://open.spotify.com/playlist/6mm9OauVOBeJRQakl62hvJ?si=d8d8706fe17f4831
+House - https://open.spotify.com/playlist/5XWY6rVFBO7H39zpTOb1oP?si=18e39055ff3e4edc
+Jungle - https://open.spotify.com/playlist/5mWxAFtcMIsZ3bretEX8Wm?si=9c399a111e3d43f4
+
+Here are the questions from the survey:
+
+Listen to each playlist as a whole(30s - 1m each track). For each playlist answer these questions and provide your results as a list of 8 numbers.
+
+Questions:
+Too which extent do you agree with the following statements(1-10):
+
+If represented visually, this music would be sharp?- __
+
+If represented visually, this music would be a complex shape? - __
+
+The listener is drawn more to the kick drum than the snare drum? __
+
+If represented visually, the colours would be bright and vibrant? - __
+
+If represented visually, this music would appear clear and distinguishable?(as opposed to blurred/foggy) - __
+
+If represented visually, the music would appear complex and “busy” - __
+
+This music would be best appreciated on a run, or fast travel? __
+
+The drums are a primary focus of this music. - __
+
+
