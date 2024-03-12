@@ -1,0 +1,15 @@
+This week I have focused on rebuilding my max patch so that new data can be added to the training process without having to enter new survey results or spend 
+time working on long calculations. The max patch has been rebuilt so that it runs through any number of presets(36 for my project), it will add each of these 
+to their own dataset. For the output results I integrated max eith excel using the cell object.I have sent the survey to multiple participants and entered them 
+into an excel spreadsheet. Using the built in excel add function each cell on the 'mean' row calculates the average for each question. The excel sheet is then 
+exported as a.csv file and read by the cell object which extracts the row of the mean values. Using zl objects to organise through the clutter of data the list
+of values is then split into 6 parts and stored. Using an uzi object and multiple triggers, the output data is successfully paired with the input data in the 
+preset object. A seperate counter system then iterates through each item in the preset and sends it individually into a dataset where it is then stored.
+
+Once the data is inside the dataset I simply have to fit it. The good thing about this patch is that it is only for me and not for the user. It allows me to 
+very quickly automate training and add more data over the course of the project. As I can just add rows in excel and the mean value will always be calculated I 
+do not have to change anything in the max patch. 
+
+Next week I plan to continue collecting data and start working on the patch the user will control the system with. With this training patch I hope to create 
+different combinations of applicants, seperating them with things they have in common such as neurodivergence as this is a commmon topic in the psychological field 
+of perception. I can then train and save different versions of the network to be loaded and used in the user patch. 
