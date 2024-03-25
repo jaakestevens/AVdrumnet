@@ -1,0 +1,52 @@
+This week I finally attempted to fit my data into the network. With a fit of 157.052.... it was obvious that it would not work this way.
+I believe it is because their are two factors within training, the bpm and the pattern itself. As the network has no concept of what the 
+bpm means, It struggles to find any sort of correlation in the data(this is what I believe).However, even after training with a bpm of one 
+the network still does not seem to work.
+
+After a meeting with my tutor we established that a pattern matrix is a poor choice for a training input for a number of reasons. The first 
+being that it is difficult to incorporate the bpm, secondly if a user does not know how to input drum sequences then the system is pointless.
+Because of this, we decided to use the audio analysis built into touchdesigner, followed by a trail CHOP to output a list of values representing 
+the drum patterns. I have successfully loaded this ino max and am currently trying to conceptualise the process. 
+
+I have also decided to potentially move away from using mlp.pregressor to train the network and instead use the mlp.classifier. I think this elimnates 
+the step of programming the output values as the same for each pattern witihin a genre, instead it is given a label that represents the genre the 
+pattern belongs to. I have created a small patch that trains 6 patterns per genre and it is working perfectly so far, correctly identifying between house, 
+techno and liquid drum and bass. My plan is to create a system that is accurate using simple binary patterns first(similiar to the matrix controller) and 
+see if classification works and then attempt to incoporate the values from the trail CHOP(there are thousands of values). I need to create a system in 
+touchDesigner that records the data all to the same length for each song(5-10s). 
+
+If it works there will be no input from a user in the exhibition other than song choice. It also means when a genre drum pattern has been detected. 
+I can send a specific list of values for the AV network which will make it much easier to create.
+
+Issues that I will have to address:
+
+1. From touchdesigner I am given 3 values at once representing the kick snare and hat. When the file is converted from TD it has three columns and 2000+ rows.
+it is layed out like this:
+
+Kick  snare   hat
+0      1      0
+0      0      1 
+...   ...    ...
+
+I do not know how to organise into the network, Do I just put all the data in and hope the network understands? Do I have to seperate the columns. I have a feeling that
+the fit is going to be very high. 
+
+2. Secondly, I am not sure how to format this data, the data from the trail chop runs very fast so that when there is no drum detected we have so many unneeded of lines of 0's.
+I want to create a way where I can convert to Dat but have less useles data by slowing down the rate the DAT adds new lines. 
+
+3. Thirdly, when using the network I need the amount of current values in the buffer to equal the amount it was trained on (10 seconds worth). This means I will have to have the 
+dat always look back ten seconds in the past up to the current point. My issue is what happens when a song has just been changed? Do I wait for it to reach ten seconds and then 
+check the genre. the same goes for if the network has just started. 
+
+4. Finally, the audio analysis chop can be tempramental depending on the mix of the track. It's okay to train the network and fine tune thresholds to get the best readings beforehand,
+but what about when the network is running. If there is going to be no interaction someone will need to adjust parameters when a new tune is played, OR the parameters can never change
+but I feel like that will compormise the data. It may have to work more as a performance tool as originally suggested, where visuals are displayed and I assist the network so that it 
+can identify the right genres.
+
+Stylistic Notes:
+With classification there is going to be times where the network is unsure between two, maybe 3 genres. When the network identifies a new genre, I want it to flicker then present 
+the adapted visual. This means if a network is struggling it will communicate that to the user and represent it well rather than trying to hide it.
+
+Final Note:
+I aim to have a solid foundation in this by the 1st April. It is highly unlikely it will be running perfectly but I need to begin work on the visual system from the 8th of April to give 
+myself enough time for the writeup.
