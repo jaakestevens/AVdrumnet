@@ -1,0 +1,91 @@
+For the past few weeks I have made significant progress on the AVdrumnet. I began by looking into exporting data from the audio analysis CHOP
+and using this to classify between different patterns. It's also important to mention that at this point I have committed to using classification
+as opposed to regression. 
+
+I started by experimenting with exporting files from touchdesigner and saving them to be trained later. After the audio analysis CHOP they would be
+converted to a dat that would be saved as a file on my desktop. However, I found this technique quite long-winded due to the long process of saving 
+each piece of input data. I knew that it would also become very confusing when I begin to have hundreds of samples and the organisational drawbacks 
+outweigh the success of this technique. Instead I knew that I wanted to send the data straight from TD into max and train it by hand in Max MSP. I 
+used OSC to route each channel of the audio analysis CHOP into max. These channels are processed so I am left with 0's and 1's represnting when a drum
+is heard, similiar to bangs in max msp. I then created a way to "record" these values so I had a list similiar to my sequencer network(which I will now 
+refer to as the manual network).
+
+I spent the next week attempting multiple different ways I could format this data so it could be trained. Through this process I found the zl.stream object, 
+that is really helpful when it comes to creating a list of past values. I tried to convert the TD data to a signal and record into a multichannel audio buffer. 
+This is becaue I wanted to create a buffer with multiple channels for each drum as opposed to a long list. This became impossible to train due to the massive
+amount of points that the network had to work with(192000 per channel). I then tried to downgrade the signal so that it was easier to train but this did not 
+compress the data it only affected the accuracy. The same happened when I tried to lower the sample rate. It is because of this I moved away from signal and 
+back to the bang format which I mentioned before. It is important to mention the only reason I moved to signal is so i could use record~ to record multichannel 
+buffers.
+
+After hours of research I found litle to no resources on created multichannel buffers without using audio. However I finally created a system that allowed me to 
+do this. The finished result was a toggle recording the bangs of each drum and recording the patterns to each channel of a buffer. I will add that the audio analysis
+signal from touchdesigner runs at 51 times a second. After I had this I realised that the fluid corpus manipulation classifier cannot not take multichannel input. At 
+least, from my research I found no evidence that multichannel buffers could be used as an input. Therefore I reverted back to my previous idea of creating a list.
+
+After creating the list I had to deal with the audio analysis chop itself. To detect a drum the user has to adjust the threshold due to changes in timbre across songs
+This means that the user of the network will need to have control over threshold values and so did I during training and testing. I also found that the rythm and snare
+channel often struggle to be differentiated even with control over the threshold and other parameters. This caused me to only use the kick and the snare channels as I
+found it is simpler to train and much more accurate than using all 3 channels. At this point instead of calling them kick and snare I will call them something along the
+lines of 'low' and 'high'.
+
+The final problem I needed to solve was how i could record the values. I couldn't just record the pattern loose as the position of the pattern would be skewed every time
+making it harder for the network to classify the drum pattern. For instance, the Kick could land on an offbeat when it is just the time in which i began to record the
+pattern. To solve this, I created a small recording system that when the user wants to record, it will begin recording on the next snare pattern. As there is a finite amount
+of times a kick drum can sound in a 2.5 second loop, there will only ever be a handful of variations of the same pattern. For instance, the pattern starting on beat 1, beat 2,
+beat 2.5 and so on. I will record the same 2.5 second loop 10 times, adding a training point each time. This mean that the classifier will recognise that it is the same pattern
+albeit not always starting on the 1st beat of the bar. This also means that when the user wants to guess a genre, they can press record at any time.
+
+My first network i trained was techno, jungle and liquid. Here are the results:
+Test 1:
+
+Training samples
+Techno 1 - 5/5 tests correct
+Techno 2 - 5/5 correct
+Techno 3 - 5/5 correct
+
+Liquid 1- 5/8 correct
+Liquid 2 - 4/5 correct
+Liquid 3 - 4/5 correct
+
+Jungle 1 - 3/5
+Jungle 2 - 5/5
+Jungle 3 - 5/5
+
+I identified the songs which it struggled with and came to the conclusion that the song selection is an important feature of the project. Obviously I do not want the drums to be the
+same otherwise that would be boring, yet they need to roughly follow the same patterns. I believe this is what happened with jungle 1. To retest the network I chose to subsitute liquid
+for garage. This is because jungle has a low amount of kicks and high snares, garage is the inverse and techno is almost always very equal. With large differences in genres, i thought 
+it would give the network the best chance at differentiating the genres. Here is the test of this network:
+Test 2:
+
+(Different parts of the song are used for testing, not the same loop it was trained on)
+
+Techno 1 - 5/5 correct
+Techno 2 - 5/5 correct
+Techno 3 - 5/5 correct
+
+Garage 1 - 5/5 correct
+Garage 2 5/5 correct
+Garage 3 - 4/5 correct
+
+Jungle 1 - 5/5 correct
+Jungle 2 5/5 correct
+Jungle 3 - 5/5 correct
+
+Slight error is to be expected
+
+Untested tracks - 
+Jungle 5/5 correct
+Garage - 5/5 correct
+Tech 5/6 correct
+
+Clearly this worked much more successfully. 
+
+My next steps are to:
+1. continue adding genres, and experimenting with the networks. 
+2. save multiple networks (I will try and train all genres with 1 network but may have to spread them out across two networks)
+3. Add a dynamic UI
+4. Map MIDI controller for threshold control
+5. Begin work in touchDesigner(this should be easier as the only value I am using from max will be the genre name)
+6. Writeup
+
