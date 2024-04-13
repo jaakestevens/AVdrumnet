@@ -1,0 +1,25 @@
+README:
+
+Instructions for user/marker:
+
+Within this folder is 
+the AV-drumNet(START.maxpat)
+scripting.js file which allows for a dynamic UI 
+A json file which is a saved classification network
+A toe touchdesigner patch 
+Data files which are not to be opened but are simply used for display reasons within the patch
+A past log folder which contains past versions of this project.
+A documentation file which contain the writeup and videos. 
+ 
+
+An external driver is needed for the project to work as intended. 
+
+For this project I have used "Black hole". this driver allows me to route audio directly from spotify into the patch. I have calibrated a playlist that contains a list of songs that belong to the five genres classified within the patch.
+
+A link to this is here:
+
+With the driver set to the input and output as black hole, open the touchdesigner patch 'detection'. In the TD patch on the audio device CHOP, set the device to speakers or headphones, this is the audio out for the project.
+
+Use spotify or youtube and the audio should play out of your speakers
+
+After this open the max patch and follow the blue text to initialise the system.
