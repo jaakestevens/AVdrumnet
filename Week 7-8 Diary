@@ -1,0 +1,16 @@
+Over the past two weeks I have completed every task I set at the end of the previous entry. I have trained multiple networks
+and have settled on a 5 genre network where I have trained the network on around 400+ datapoints. 
+
+These genres include:
+Techno: Because of the 4 on the floor kick drum pattern and offbeat hats.
+Liquid Drum and bass: Because of the common kick and snare combination, (kick on the 1 and 2.5)
+Jungle: Frequent snare hats that are offbeat
+Afro-House: 4 on the floor kick with offbeat snare patterns
+Downtempo: Slow kicks and snare
+
+I have also created a dynamic UI in max and javascript that provides the user with information on the patch and how to use it.
+
+Within touchdesigner I have implemented patches I have created from september-January and am currently working on the logic to 
+choose between which visual to display when a genre is detected.
+
+After this I will start the writeup.
