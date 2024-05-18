@@ -1,0 +1,30 @@
+README:
+
+Instructions for user/marker:
+
+Within this folder is 
+the AV-drumNet(START.maxpat)
+scripting.js file which allows for a dynamic UI 
+A json file which is a saved classification network
+A TD data file that does not need to be opened
+A toe touchdesigner patch 
+
+An external driver is needed for the project to work as intended. 
+For this project I have used "Black hole". An audio driver that allows me to route audio directly from spotify into the patch. I have calibrated a playlist that contains a list of songs that belong to the five genres classified within the patch.
+
+A link to blackhole is here: https://existential.audio/blackhole/
+
+A link to this playlist is here: https://open.spotify.com/playlist/1hSD97amRTvoevrSVNNFhy?si=53fed56353124c98
+
+With the driver set to the input and output of your computers audio settings, open the touchdesigner patch 'TDSTART'. In the TD patch, on the audio device out CHOP, set the device to speakers or headphones, this is the audio out for the project.
+Use spotify or youtube and the audio should play out of your speakers. If the audio does not work you may need to restart tounchdesigner and re-calibrate sound settings. I have tested with multiple drivers and it sometimes needs a couple of attempts but it will work.
+
+You will also need to download the fluid corpus manipulation package for max msp. This can be found in the max package manager.
+
+After this ,open the max patch 'START'.
+If on Mac, it will instantly direct you to this folder and prompt you to choose a network to load, if this is the case, select "masterNetwork", then enter presentation mode(presentation icon is located in the bottom left of the screen).
+
+If not asked to choose a network, you will have to follow the blue text which instructs you how to read a network to the 
+mlp.classifer
+
+After you have followed these steps you can begin using the AV-drumNet
